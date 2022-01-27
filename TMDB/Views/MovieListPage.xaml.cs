@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace TMDB
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace TMDB.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MovieListPage : ContentPage
     {
-        public MainPage()
+        public MovieListPage()
         {
             InitializeComponent();
         }

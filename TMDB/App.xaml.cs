@@ -1,4 +1,5 @@
 ﻿using System;
+using TMDB.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace TMDB
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MovieListPage());
         }
 
         protected override void OnStart()

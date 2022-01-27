@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TMDB.Views.MovieDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TMDB.Controls"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="#283646"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                VerticalOptions="StartAndExpand">
+                <StackLayout>
+                    <Image
+                        HorizontalOptions="CenterAndExpand"
+                        Source="{Binding MovieDetail.ImageUrl}"
+                        VerticalOptions="Start" />
+
+                    <Grid
+                        Padding="16"
+                        ColumnDefinitions="*, *"
+                        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            FontAttributes="Bold"
+                            FontSize="Title"
+                            Text="{Binding MovieDetail.Title}"
+                            TextColor="White" />
+                        <controls:RattingBar
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            EmptyStarImage="emptystar"
+                            FillStarImage="fillstar"
+                            HorizontalOptions="End"
+                            ImageHeight="16"
+                            ImageWidth="16"
+                            SelectedStarValue="{Binding MovieDetail.Starts}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Text="{Binding MovieDetail.Overview}"
+                            TextColor="White" />
+
+                        <CollectionView
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0"
+                            HeightRequest="180"
+                            HorizontalOptions="Start"
+                            ItemsSource="{Binding MovieDetail.Characters}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ScrollView Orientation="Horizontal">
+                                        <StackLayout Padding="8" VerticalOptions="Start">
+                                            <Frame
+                                                Padding="0"
+                                                CornerRadius="50"
+                                                HeightRequest="100"
+                                                HorizontalOptions="Center"
+                                                IsClippedToBounds="True"
+                                                WidthRequest="100">
+                                                <Image
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Source="{Binding ImageProfile}"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </Frame>
+
+                                            <Label
+                                                HorizontalOptions="Center"
+                                                Text="{Binding Name}"
+                                                TextColor="White"
+                                                WidthRequest="100" />
+                                        </StackLayout>
+                                    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="1"
+                            FontAttributes="Bold"
+                            Text="Studio"
+                            TextColor="White" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            Text="{Binding Studio}"
+                            TextColor="White" />
+
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="1"
+                            FontAttributes="Bold"
+                            Text="Genre"
+                            TextColor="White" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            Text="{Binding Genre}"
+                            TextColor="White" />
+
+                        <Label
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="1"
+                            FontAttributes="Bold"
+                            Text="Release"
+                            TextColor="White" />
+                        <Label
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            Text="{Binding ReleaseDateYear}"
+                            TextColor="White" />
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="24, 24, 20, 20"
+                BackgroundColor="Transparent"
+                Command="{Binding NavigationToBackCommand}"
+                Source="baseline_arrow_back.png" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

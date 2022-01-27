@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TMDB.Views.MovieListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TMDB.Controls"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:vm="clr-namespace:TMDB.ViewModels"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="#5fa3d2"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <vm:MovieListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Frame
+                    Padding="48"
+                    BackgroundColor="#5fa3d2"
+                    HasShadow="False">
+                    <StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="36"
+                            HorizontalOptions="Center"
+                            Text="Hello, what do you want to watch ?"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                        <Frame
+                            Margin="0"
+                            Padding="8"
+                            BackgroundColor="#90bfe0"
+                            BorderColor="Transparent"
+                            CornerRadius="20"
+                            HasShadow="False">
+                            <controls:SearchBarCustom
+                                x:Name="search"
+                                BackgroundColor="#90bfe0"
+                                CancelButtonColor="White"
+                                HeightRequest="24"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Search"
+                                PlaceholderColor="White"
+                                SearchCommand="{Binding SearchCommand}"
+                                Text="{Binding SearchText}"
+                                TextColor="White"
+                                VerticalOptions="FillAndExpand" />
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+                    Padding="0"
+                    BackgroundColor="#283646"
+                    BorderColor="Transparent"
+                    CornerRadius="20"
+                    HasShadow="False"
+                    VerticalOptions="StartAndExpand">
+                    <StackLayout>
+
+                        <Label
+                            Margin="16,24,16,0"
+                            Text="TOP RATE"
+                            TextColor="White" />
+                        <CollectionView
+                            HeightRequest="250"
+                            IsVisible="{Binding IsVisibleMovieListTopRated}"
+                            ItemsSource="{Binding MovieListTopRated}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ScrollView Orientation="Horizontal">
+                                        <StackLayout>
+                                            <controls:MovieCard
+                                                ImageSource="{Binding PosterPath}"
+                                                SelectedStarValue="{Binding Starts}"
+                                                Text="{Binding TitleName}">
+                                                <controls:MovieCard.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MovieListViewModel}}, Path=ViewDetailsMovieCommand}" CommandParameter="{Binding .}" />
+                                                </controls:MovieCard.GestureRecognizers>
+                                            </controls:MovieCard>
+                                        </StackLayout>
+                                    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label
+                            Margin="30"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding IsVisibleWarningTopRated}"
+                            Text="No se encontraron resultados"
+                            TextColor="White" />
+
+                        <Label
+                            Margin="16,24,16,0"
+                            Text="UPCOMING"
+                            TextColor="White" />
+                        <CollectionView
+                            HeightRequest="250"
+                            IsVisible="{Binding IsVisibleMovieListUpcoming}"
+                            ItemsSource="{Binding MovieListUpcoming}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ScrollView Orientation="Horizontal">
+                                        <controls:MovieCard
+                                            ImageSource="{Binding PosterPath}"
+                                            SelectedStarValue="{Binding Starts}"
+                                            Text="{Binding TitleName}">
+                                            <controls:MovieCard.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MovieListViewModel}}, Path=ViewDetailsMovieCommand}" CommandParameter="{Binding .}" />
+                                            </controls:MovieCard.GestureRecognizers>
+                                        </controls:MovieCard>
+                                    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label
+                            Margin="30"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding IsVisibleWarningUpcoming}"
+                            Text="No se encontraron resultados"
+                            TextColor="White" />
+
+                        <Label
+                            Margin="16,24,16,0"
+                            Text="POPULAR"
+                            TextColor="White" />
+                        <CollectionView
+                            HeightRequest="250"
+                            IsVisible="{Binding IsVisibleMovieListPopular}"
+                            ItemsSource="{Binding MovieListPopular}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ScrollView Orientation="Horizontal">
+                                        <controls:MovieCard
+                                            ImageSource="{Binding PosterPath}"
+                                            SelectedStarValue="{Binding Starts}"
+                                            Text="{Binding TitleName}">
+                                            <controls:MovieCard.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MovieListViewModel}}, Path=ViewDetailsMovieCommand}" CommandParameter="{Binding .}" />
+                                            </controls:MovieCard.GestureRecognizers>
+                                        </controls:MovieCard>
+                                    </ScrollView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label
+                            Margin="30"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding IsVisibleWarningPopular}"
+                            Text="No se encontraron resultados"
+                            TextColor="White" />
+
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

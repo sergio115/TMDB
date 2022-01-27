@@ -133,4 +133,13 @@
       <Name>TMDB</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\emptystar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fillstar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_arrow_back.png" />
+  </ItemGroup>
 </Project>

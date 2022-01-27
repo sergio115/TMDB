@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="TMDB.Controls.MovieCard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TMDB.Controls"
+    x:Name="this">
+
+    <Frame
+        BackgroundColor="Transparent"
+        BindingContext="{x:Reference this}"
+        HasShadow="False">
+        <StackLayout>
+            <Frame
+                Margin="0"
+                Padding="0"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="False">
+                <Image
+                    Aspect="Fill"
+                    BackgroundColor="#283646"
+                    HeightRequest="160"
+                    Source="{Binding ImageSource}"
+                    WidthRequest="120" />
+            </Frame>
+            <Label
+                LineBreakMode="TailTruncation"
+                Text="{Binding Text}"
+                TextColor="White"
+                WidthRequest="90" />
+            <controls:RattingBar
+                EmptyStarImage="emptystar"
+                FillStarImage="fillstar"
+                HorizontalOptions="Start"
+                ImageHeight="16"
+                ImageWidth="16"
+                SelectedStarValue="{Binding SelectedStarValue}" />
+            <Label />
+        </StackLayout>
+    </Frame>
+</ContentView>
